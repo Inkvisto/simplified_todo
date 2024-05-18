@@ -46,6 +46,27 @@ await prisma.user.createMany({
       social: ["Friends"],
       eventId: 2
 },
+    {id: 25,
+      name: 'Omni',
+      email: 'om@gmail.com',
+      birth: "2004-12-02T22:00:00.000Z",
+      social: ["Friends"],
+      eventId: 6
+},
+    {id: 26,
+      name: 'Liki',
+      email: 'riki@gmail.com',
+      birth: "2004-12-02T22:00:00.000Z",
+      social: ["Friends"],
+      eventId: 2
+},
+    {id: 27,
+      name: 'Livcy',
+      email: 'love@gmail.com',
+      birth: "2004-12-02T22:00:00.000Z",
+      social: ["Friends"],
+      eventId: 2
+},
   ]
 })
 }

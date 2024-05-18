@@ -13,16 +13,16 @@ const Card = ({ id, title, description, event_date, organizer, color }: Event & 
         <div>{organizer}</div>
       </div>
       <div className='justify-between flex gap-8 mt-auto'>
-        <Button className="shadow-lg bg-gray-300">
           <Link href={`/register/${id}`}>
+        <Button className="shadow-lg bg-gray-300">
             Register
-          </Link>
         </Button>
-        <Button className="shadow-lg bg-indigo-300">
+          </Link>
           <Link href={`/participants/${id}`}>
+        <Button className="shadow-lg bg-indigo-300">
             View
-          </Link>
         </Button>
+          </Link>
       </div>
     </div>
   );
