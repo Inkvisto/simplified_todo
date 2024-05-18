@@ -1,7 +1,7 @@
 'use client'
 import { Button, Checkbox, CheckboxGroup, DateInput, DatePicker, DateValue, Input } from '@nextui-org/react';
 import { useFormik } from 'formik';
-import { redirect, useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 
 const RegisterForm = ({id}: {id:number}) => {
  const router = useRouter();
