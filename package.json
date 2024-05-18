@@ -10,7 +10,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "init": "sh prisma/setup.sh"
+    "init": "sh prisma/setup.sh & next build"
   },
   "dependencies": {
     "@nextui-org/react": "^2.3.6",

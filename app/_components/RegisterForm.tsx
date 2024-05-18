@@ -15,6 +15,7 @@ const RegisterForm = ({id}: {id:number}) => {
     },
 
     onSubmit: async(values) => {
+      // @ts-ignore: Object is possibly 'null'.
       let birth_formatted = values.birth.toDate();
       fetch('/api/events', {method: 'POST', body: JSON.stringify({id:id, name:values.fullName,
          email:values.email, birth:birth_formatted, social: values.checked})}).then((response) => response.json())

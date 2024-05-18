@@ -10,9 +10,9 @@ const Events = async () => {
 
   return (
     <div className="grid 2xl:grid-cols-4 xl:grid-cols-3 md:grid-cols-2 gap-4">
-      {events.map((event: Event) => {
+      {events.map((event) => {
         let rand = Math.floor(Math.random() * 23);
-        return (<Card {...event} color={palette[rand]} />);
+        return (<Card key={event.id} {...event} color={palette[rand]} />);
       })}
     </div>
   )
