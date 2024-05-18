@@ -3,7 +3,7 @@
 Run the development server:
 
 ```bash
-npm run init
+npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.

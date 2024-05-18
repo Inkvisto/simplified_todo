@@ -6,11 +6,10 @@
     "seed": "ts-node prisma/seed"
   },
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "sh prisma/setup.sh & next dev",
+    "build": "prisma generate && prisma db push && prisma db seed && next build",
     "start": "next start",
-    "lint": "next lint",
-    "init": "sh prisma/setup.sh & next build"
+    "lint": "next lint"
   },
   "dependencies": {
     "@nextui-org/react": "^2.3.6",
