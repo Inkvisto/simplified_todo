@@ -9,18 +9,18 @@ const Card = ({ id, title, description, event_date, organizer, color }: Event & 
       <div>
         <h3>{title}</h3>
         <span>{description}</span>
-        <span>{event_date.toDateString()}</span>
+        <span>{new Date(event_date).toDateString()}</span>
         <div>{organizer}</div>
       </div>
       <div className='justify-between flex gap-8 mt-auto'>
-        <Button className="border border-gray-300 shadow-lg">
+        <Button className="shadow-lg bg-gray-300">
           <Link href={`/register/${id}`}>
-          Register
+            Register
           </Link>
         </Button>
-        <Button className="border border-gray-300 shadow-lg">
+        <Button className="shadow-lg bg-indigo-300">
           <Link href={`/participants/${id}`}>
-          View
+            View
           </Link>
         </Button>
       </div>

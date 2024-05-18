@@ -1,11 +1,16 @@
-'use server'
+'use client'
 
-import { getUsers } from "@/app/api/events/db";
+import useSWR from "swr";
+import { fetcher } from "../../../_lib/utils"
 
-export default async function Page({ params }: { params: { id: number } }) {
-  const event = await getUsers(Number(params.id));
+export default function Page({ params }: { params: { id: number } }) {
+
+  const { data, error, isLoading } = useSWR(`/api/users?id=${params.id}`, fetcher);
+  if (error) return <div>failed to load</div>
+  if (isLoading) return <div>loading...</div>
+
   return <div className="grid grid-cols-4 gap-4 p-24">{
-    event?.users.map((e) => {
+    data.data.users.map((e) => {
       return (<div key={e.id} className="border p-4 grid gap-4">
         <h2>{e.name}</h2>
         <div>{e.email}</div>

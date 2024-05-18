@@ -1,20 +1,43 @@
-'use server'
+'use client'
 import Card from "./Card"
-import { getEvents } from "../api/events/db"
+import { fetcher } from "../_lib/utils"
 import colors from "tailwindcss/colors"
+import { Select, SelectItem, Selection } from "@nextui-org/react";
+import { useState } from 'react';
+import useSWR from "swr";
 
-const Events = async () => {
-  const events = await getEvents();
+
+const Events = () => {
+  const [value, setValue] = useState<Selection>(new Set(['title']));
+
+  const { data, error, isLoading } = useSWR(`/api/events?order_by=${value.values().next().value}`, fetcher);
+  if (error) return <div>failed to load</div>
+  if (isLoading) return <div>loading...</div>
 
   let palette = Object.entries(colors).map(e => e[1]['200']).filter(e => e).slice(4);
 
-  return (
+  return (<div>
+    <Select
+      label="Order by"
+      className="max-w-xs mb-10"
+      selectedKeys={value}
+      onSelectionChange={setValue}
+    >
+      {['title', 'event_date', 'organizer'].map((e) => {
+        return (
+          <SelectItem key={e} value={e}>
+            {e}
+          </SelectItem>
+        )
+      })}
+    </Select>
     <div className="grid 2xl:grid-cols-4 xl:grid-cols-3 md:grid-cols-2 gap-4">
-      {events.map((event) => {
+      {data.data.map((event) => {
         let rand = Math.floor(Math.random() * 23);
         return (<Card key={event.id} {...event} color={palette[rand]} />);
       })}
     </div>
+  </div>
   )
 }
 
