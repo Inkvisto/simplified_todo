@@ -1,7 +1,7 @@
 'use client';
 
 import { User } from "@prisma/client";
-import {useEffect} from 'react';
+import { useEffect } from 'react';
 
 export default function Search({ placeholder, handler, users }: { placeholder: string, handler: any, users: User[] }) {
 

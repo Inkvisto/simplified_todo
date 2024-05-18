@@ -1,11 +1,11 @@
 'use client'
-import { Button, Checkbox, CheckboxGroup, DateInput, DatePicker, DateValue, Input } from '@nextui-org/react';
+import { Button, Checkbox, CheckboxGroup, DateInput, DateValue, Input } from '@nextui-org/react';
 import { useFormik } from 'formik';
 import { useRouter } from 'next/navigation'
 
-const RegisterForm = ({id}: {id:number}) => {
- const router = useRouter();
-     
+const RegisterForm = ({ id }: { id: number }) => {
+  const router = useRouter();
+
   const formik = useFormik({
     initialValues: {
       fullName: '',
@@ -14,18 +14,23 @@ const RegisterForm = ({id}: {id:number}) => {
       checked: []
     },
 
-    onSubmit: async(values) => {
+    onSubmit: async (values) => {
       // @ts-ignore: Object is possibly 'null'.
       let birth_formatted = values.birth.toDate();
-      fetch('/api/events', {method: 'POST', body: JSON.stringify({id:id, name:values.fullName,
-         email:values.email, birth:birth_formatted, social: values.checked})}).then((response) => response.json())
-            .then((data) => {
-                console.log(data);
-      router.push(`/participants/${id}`);
-            })
-            .catch((error) => {
-                console.error(error);
-            });
+      fetch('/api/events', {
+        method: 'POST', body: JSON.stringify({
+          id: id, name: values.fullName,
+          email: values.email, birth: birth_formatted, social: values.checked
+        })
+      }).then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          router.push(`/participants/${id}`);
+          router.refresh();
+        })
+        .catch((error) => {
+          console.error(error);
+        });
     },
   });
 
@@ -50,7 +55,7 @@ const RegisterForm = ({id}: {id:number}) => {
       <DateInput
         name="birth"
         label="Date of birth"
-        onChange={(birth: DateValue) =>formik.setFieldValue("birth", birth)}
+        onChange={(birth: DateValue) => formik.setFieldValue("birth", birth)}
         value={formik.values.birth}
 
       />
