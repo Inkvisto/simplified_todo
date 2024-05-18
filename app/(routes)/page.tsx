@@ -1,5 +1,4 @@
 'use server'
-import Image from "next/image";
 import Events from "../_components/Events";
 
 export default async function Home() {

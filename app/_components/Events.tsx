@@ -8,7 +8,7 @@ import useSWR from "swr";
 
 
 const Events = () => {
-  const [value, setValue] = useState<Selection>(new Set(['title']));
+  const [value, setValue] = useState<any>(new Set(['title']));
 
   const { data, error, isLoading } = useSWR(`/api/events?order_by=${value.values().next().value}`, fetcher);
   if (error) return <div>failed to load</div>
@@ -32,7 +32,7 @@ const Events = () => {
       })}
     </Select>
     <div className="grid 2xl:grid-cols-4 xl:grid-cols-3 md:grid-cols-2 gap-4">
-      {data.data.map((event) => {
+      {data.data.map((event: any) => {
         let rand = Math.floor(Math.random() * 23);
         return (<Card key={event.id} {...event} color={palette[rand]} />);
       })}
