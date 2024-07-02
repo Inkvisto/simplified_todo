@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 
 const RegisterForm = ({ id }: { id: number }) => {
   const router = useRouter();
+  const users = [];
 
   const formik = useFormik({
     initialValues: {
@@ -17,20 +18,12 @@ const RegisterForm = ({ id }: { id: number }) => {
     onSubmit: async (values) => {
       // @ts-ignore: Object is possibly 'null'.
       let birth_formatted = values.birth.toDate();
-      fetch('/api/events', {
-        method: 'POST', body: JSON.stringify({
+      users.push({
           id: id, name: values.fullName,
           email: values.email, birth: birth_formatted, social: values.checked
-        })
-      }).then((response) => response.json())
-        .then((data) => {
-          console.log(data);
-          router.push(`/participants/${id}`);
-          router.refresh();
-        })
-        .catch((error) => {
-          console.error(error);
         });
+        router.push(`/participants/${id}`);
+        router.refresh();
     },
   });
 

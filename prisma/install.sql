@@ -1,2 +1,0 @@
-CREATE USER marcus WITH PASSWORD 'marcus';
-CREATE DATABASE elif OWNER marcus;
